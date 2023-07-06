@@ -43,6 +43,22 @@ export default function App() {
     return filteredContacts;
   };
 
+  useEffect(() => {
+    try {
+      const savedContacts = localStorage.getItem('contacts');
+      const parsedContacts = JSON.parse(savedContacts);
+      if (parsedContacts) {
+        setContacts(parsedContacts);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
+
   return (
     <div className={css.wraper}>
       <h1>Phonebook</h1>
