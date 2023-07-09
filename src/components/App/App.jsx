@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ContactForm from '../ContactForm/ContactForm';
 import Filter from '../Filter/Filter';
 import ContactList from '../ContactList/ContactList';
@@ -47,6 +47,7 @@ export default function App() {
     try {
       const savedContacts = localStorage.getItem('contacts');
       const parsedContacts = JSON.parse(savedContacts);
+      console.log(parsedContacts);
       if (parsedContacts) {
         setContacts(parsedContacts);
       }
@@ -56,6 +57,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    console.log(contacts);
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
